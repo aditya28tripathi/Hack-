@@ -24,31 +24,42 @@ const Header1 = () => {
     setAuth(false);
     router.push("/");
   };
+  
+  const headerStyle = {
+    background: "linear-gradient(45deg, #040c19, #06142a, #071e3b)", // Gradient background with dark shades of blue
+    color: "white", 
+    borderBottom: "none", 
+  };
+  
+  const gradientStyle = {
+    backgroundImage: "linear-gradient(to right, #000000, #606060)",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+  };
 
   return (
-    <div className="flex justify-between border-b-2 border-gray-300 items-center h-24 px-10">
-      <h2 className="text-4xl font-bold mr-5">
-        <span className="bg-gradient-to-r from-black to-gray-600 text-transparent bg-clip-text">
-          ArtFlow
-        </span>
+    <div className="flex justify-between items-center h-24 px-10" style={headerStyle}>
+      <h2 className="text-4xl font-bold mr-5 flex items-center">
+        <span style={gradientStyle}>ArtFlow</span>
+        <img src="art.png" alt="Logo" className="w-10 h-10 ml-2" />
       </h2>
 
-      <div className="h-full flex">
-        <Block title={"Become a member"} para={"Additional 0% off on stays."} />
-        
+      <div className="flex h-full">
         <Link href={'/Feature'}>
-          <Block
-            title={"Top Artists"}
-            para={"Explore our top artists."}
-           
-          />
-          
+          <Block title={"Top Artists"} para={"Explore our top artists."} />
         </Link>
-        <Block title={"List your property"} para={"Start earning in 30 min."} />
+        
+
+        <Link href={'/Learning'}> 
+        <Block title={"Learning Kit"} para={"Start here!"} />
+
+        </Link>
+        
         <Link href={'/Contact'}>
-        <Block title={"Contact Us"}  /> 
+          <Block title={"Contact Us"} />
         </Link>
-        <div className="flex items-center px-3">
+
+        <div className="flex items-center ml-auto">
           <Image
             src={"/login.png"}
             alt="demo"
@@ -56,7 +67,6 @@ const Header1 = () => {
             height={40}
             className="w-10 h-10 rounded-full mr-5"
           />
-
           {auth ? (
             <h3 className="font-bold cursor-pointer" onClick={handleLogout}>
               Logout
